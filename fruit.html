@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SereniTea House - Premium Tea Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #8B7355;
+            --secondary: #3A5A40;
+            --accent: #DDA15E;
+            --light: #FEFAE0;
+            --dark: #2D2D2A;
+        }
+
+        body {
+            background-color: #f9f7f2;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 28px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 17px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cart-btn, .order-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .order-btn {
+            background-color: var(--secondary);
+        }
+
+        .cart-btn:hover, .order-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.8)), url('https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h2 {
+            font-size: 48px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .cta-btn {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Featured Products */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-size: 22px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .add-to-cart {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        /* Tea Types */
+        .tea-types {
+            padding: 80px 0;
+            background-color: #f9f7f2;
+        }
+
+        .tea-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .tea-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .tea-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .tea-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(139, 115, 85, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .tea-icon i {
+            font-size: 36px;
+            color: var(--primary);
+        }
+
+        .tea-card h3 {
+            font-size: 22px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        .tea-card p {
+            color: #666;
+            font-size: 15px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content, .about-content {
+                flex-direction: column;
+            }
+            
+            .hero-text h2 {
+                font-size: 40px;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                padding-top: 180px;
+            }
+            
+            .hero-text h2 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h2 {
+                font-size: 28px;
+            }
+            
+            .product-grid, .tea-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-mug-hot"></i>
+                <h1>Sereni<span>Tea</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#types">Tea Types</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="cart-btn"><i class="fas fa-shopping-cart"></i> Cart</button>
+                <button class="order-btn">Order Online</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h2>Experience the Art of Premium Tea</h2>
+                <p>Discover our handcrafted selection of artisanal teas sourced from the finest gardens around the world. Each cup tells a story of tradition, quality, and passion.</p>
+                <button class="cta-btn">Explore Our Collection <i class="fas fa-arrow-right"></i></button>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1567337710282-00832fa9d5c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Artisanal Tea Preparation">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Featured Teas</h2>
+                <p>Carefully selected teas that represent the pinnacle of flavor and aroma.</p>
+            </div>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" alt="Golden Oolong Tea">
+                    </div>
+                    <div class="product-info">
+                        <h3>Golden Oolong</h3>
+                        <p>A semi-oxidized tea with floral notes and a smooth, creamy finish. Sourced from Taiwan's high mountains.</p>
+                        <div class="product-price">
+                            <span class="price">$24.99</span>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1558160074-4d7d8bdf4256?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Matcha Green Tea">
+                    </div>
+                    <div class="product-info">
+                        <h3>Ceremonial Matcha</h3>
+                        <p>Stone-ground Japanese green tea powder with vibrant color and umami-rich flavor. Perfect for traditional tea ceremonies.</p>
+                        <div class="product-price">
+                            <span class="price">$32.99</span>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1567945716217-9e7b2b7dcb44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Earl Grey Tea">
+                    </div>
+                    <div class="product-info">
+                        <h3>Earl Grey Supreme</h3>
+                        <p>A classic black tea infused with oil of bergamot. Bright, citrusy, and aromatic with a bold flavor profile.</p>
+                        <div class="product-price">
+                            <span class="price">$18.99</span>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1597481499751-6d4d81a1b5e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" alt="Chamomile Herbal Tea">
+                    </div>
+                    <div class="product-info">
+                        <h3>Calming Chamomile</h3>
+                        <p>Caffeine-free herbal blend with whole chamomile flowers, lavender, and lemon balm for ultimate relaxation.</p>
+                        <div class="product-price">
+                            <span class="price">$16.99</span>
+                            <button class="add-to-cart"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tea Types -->
+    <section class="tea-types" id="types">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore Tea Varieties</h2>
+                <p>Discover the diverse world of tea with our expertly curated categories.</p>
+            </div>
+            <div class="tea-grid">
+                <div class="tea-card">
+                    <div class="tea-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Green Tea</h3>
+                    <p>Unoxidized leaves with fresh, grassy flavors and abundant antioxidants.</p>
+                </div>
+                <div class="tea-card">
+                    <div class="tea-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>Black Tea</h3>
+                    <p>Fully oxidized for robust flavor, perfect for morning energy.</p>
+                </div>
+                <div class="tea-card">
+                    <div class="tea-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Oolong Tea</h3>
+                    <p>Partially oxidized, offering complex flavors between green and black tea.</p>
+                </div>
+                <div class="tea-card">
+                    <div class="tea-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Herbal Infusions</h3>
+                    <p>Caffeine-free blends of herbs, flowers, fruits, and spices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container about-content">
+            <div class="about-text">
+                <h2>Our Tea Story</h2>
+                <p>Founded in 2010, SereniTea began as a small family-owned tea shop with a passion for sharing the world's finest teas. Today, we continue that tradition by sourcing directly from sustainable tea gardens and working closely with tea masters.</p>
+                <p>We believe that tea is more than just a beverage—it's an experience that connects people, cultures, and moments. Each tea in our collection is carefully selected for its unique character, quality, and story.</p>
+                <p>Visit our cozy tea house to enjoy a perfectly brewed cup in a tranquil setting, or explore our online store to bring the SereniTea experience to your home.</p>
+                <button class="cta-btn" style="margin-top: 20px;">Visit Our Shop <i class="fas fa-map-marker-alt"></i></button>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80" alt="SereniTea Shop Interior">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>SereniTea House</h3>
+                    <p>Experience the art of premium tea in every cup. We're dedicated to bringing you the finest teas from around the world.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#products">Our Teas</a>
+                    <a href="#types">Tea Types</a>
+                    <a href="#about">Our Story</a>
+                    <a href="#contact">Contact Us</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Visit Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Tea Lane, Brew District</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@serenitea.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 8am-8pm, Sun: 9am-6pm</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive updates on new arrivals, special offers, and tea brewing tips.</p>
+                    <button class="cta-btn" style="margin-top: 15px; padding: 12px 25px;">Subscribe</button>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 SereniTea House. All rights reserved. | Designed with <i class="fas fa-heart" style="color: #DDA15E;"></i> for tea lovers everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const productName = productCard.querySelector('h3').textContent;
+                const productPrice = productCard.querySelector('.price').textContent;
+                
+                // Create notification
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 100px;
+                    right: 20px;
+                    background-color: var(--secondary);
+                    color: white;
+                    padding: 15px 25px;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+                    z-index: 10000;
+                    font-weight: 600;
+                    animation: slideIn 0.5s ease, fadeOut 0.5s ease 2.5s forwards;
+                `;
+                
+                // Add CSS for animations
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes fadeOut {
+                        from { opacity: 1; }
+                        to { opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                notification.innerHTML = `<i class="fas fa-check-circle"></i> Added ${productName} to cart`;
+                document.body.appendChild(notification);
+                
+                // Remove notification after animation
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+                
+                // Animate the cart button
+                const cartBtn = document.querySelector('.cart-btn');
+                cartBtn.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    cartBtn.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Header shadow on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

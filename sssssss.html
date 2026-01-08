@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits in Nature</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #a2d9ff, #ffffff);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2e8b57;
+            margin: 20px 0;
+        }
+
+        .fruit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .fruit-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            height: 250px;
+            color: #fff;
+        }
+
+        .fruit-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .fruit-info {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .fruit-info h3 {
+            margin: 5px 0;
+            font-size: 20px;
+        }
+
+        .fruit-info p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>🍓 Fruits in Nature</h1>
+    <div class="fruit-grid">
+        <!-- Apple -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Apple</h3>
+                <p>Rich in fiber and vitamin C.</p>
+            </div>
+        </div>
+
+        <!-- Banana -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1574226516831-e1dff420e7f1?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Banana</h3>
+                <p>Great for energy and potassium.</p>
+            </div>
+        </div>
+
+        <!-- Orange -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1584270354949-5cbe1c82d105?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Orange</h3>
+                <p>Full of vitamin C.</p>
+            </div>
+        </div>
+
+        <!-- Strawberry -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Strawberry</h3>
+                <p>Rich in antioxidants.</p>
+            </div>
+        </div>
+
+        <!-- Grape -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1585238342026-cc85f39d17e0?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Grape</h3>
+                <p>Good for heart health.</p>
+            </div>
+        </div>
+
+        <!-- Kiwi -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1571048139831-04f8a5d4b6b7?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Kiwi</h3>
+                <p>High in vitamin C and fiber.</p>
+            </div>
+        </div>
+
+        <!-- Mango -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1612831660211-23d7b1f097eb?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Mango</h3>
+                <p>Sweet and packed with vitamins.</p>
+            </div>
+        </div>
+
+        <!-- Watermelon -->
+        <div class="fruit-card" style="background-image: url('https://images.unsplash.com/photo-1592928307166-c4a379c71936?auto=format&fit=crop&w=400&q=80');">
+            <div class="fruit-info">
+                <h3>Watermelon</h3>
+                <p>Refreshing and hydrating.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
